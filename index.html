@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WS Design | Tech & Creative Studio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --dark: #0f172a;
+            --light: #f8fafc;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            transition: 0.3s; 
+            background-color: var(--light);
+            margin: 0;
+            padding: 0;
+        }
+
+        body.dark-theme {
+            background-color: var(--dark);
+            color: white;
+        }
+
+        
+        .navbar { 
+            backdrop-filter: blur(10px); 
+            background: rgba(255,255,255,0.9) !important; 
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 10px 0;
+            z-index: 2000;
+        }
+
+        .dark-theme .navbar { 
+            background: rgba(15, 23, 42, 0.9) !important; 
+            border-color: rgba(255,255,255,0.1); 
+        }
+
+        
+        .logo-box {
+            height: 48px; 
+            width: auto;
+            background: white;
+            padding: 4px 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,210,255,0.2);
+            object-fit: contain;
+        }
+
+       
+        .hero {
+            padding: 160px 0 100px; 
+            background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+        }
+
+        .service-card {
+            border: none;
+            border-radius: 15px;
+            transition: 0.3s;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+
+        .dark-theme .service-card { background: #1e293b; color: white; }
+        .service-card:hover { transform: translateY(-10px); }
+
+        .project-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        #theme-toggle { cursor: pointer; font-size: 24px; transition: 0.3s; color: var(--primary); }
+
+        .badge-tech {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        footer { background: #0a0f1c; color: #94a3b8; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="logoss.png" alt="WS Design" class="logo-box me-2">
+            <span class="fw-bold text-uppercase d-none d-sm-inline dark-theme-text" style="letter-spacing: 1px;">
+                WS<span class="text-primary">Design</span>
+            </span>
+        </a>
+        <div class="ms-auto d-flex align-items-center">
+            <i class="ri-moon-line me-3" id="theme-toggle"></i>
+            <a href="https://wa.me/5511945756790" class="btn btn-primary rounded-pill px-4 fw-bold">Orçamento</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero text-center">
+    <div class="container" data-aos="zoom-out">
+        <span class="badge bg-primary mb-3 px-3 py-2 rounded-pill">UI/UX & DEVELOPMENT</span>
+        <h1 class="display-3 fw-bold">Elevando o nível da sua <br><span class="text-primary">Presença Digital.</span></h1>
+        <p class="lead mb-4 opacity-75">Criação de sites, portfólios e identidades visuais de alto padrão.</p>
+        <a href="#projetos" class="btn btn-primary btn-lg rounded-pill px-5 shadow">Explorar Portfólio</a>
+    </div>
+</section>
+
+<section id="projetos" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-bold">Projetos em Destaque</h2>
+            <p class="text-muted">Trabalhos reais entregues para clientes.</p>
+        </div>
+        
+        <div class="row g-4" id="gallery-container">
+            </div>
+    </div>
+</section>
+
+<footer class="py-5 text-center border-top">
+    <div class="container">
+        <p class="mb-2">© 2026 <strong>WS Design</strong>. Todos os direitos reservados.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="https://github.com/WSdesing" target="_blank" class="text-secondary fs-3"><i class="ri-github-fill"></i></a>
+            <a href="https://wa.me/5511945756790" target="_blank" class="text-secondary fs-3"><i class="ri-whatsapp-line"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+    AOS.init({ duration: 1000, once: true });
+
+    
+    const themeBtn = document.getElementById('theme-toggle');
+    themeBtn.onclick = () => {
+        document.body.classList.toggle('dark-theme');
+        const isDark = document.body.classList.contains('dark-theme');
+        themeBtn.className = isDark ? 'ri-sun-line me-3' : 'ri-moon-line me-3';
+    };
+
+    
+    const projetos = [
+        { 
+            img: 'https://pereirasantosconstrutora.com.br/logo.png', 
+            titulo: 'Pereira & Santos Construtora', 
+            desc: 'Site institucional completo com Dark Mode e formulário de orçamento.',
+            git: 'https://github.com/WSdesing/P-S-construtora.git',
+            live: 'https://pereirasantosconstrutora.com.br/',
+            tags: ['Bootstrap 5', 'JS', 'PHP']
+        },
+        { 
+            img: 'https://pereirasantosconstrutora.com.br/logo.png', 
+            titulo: 'Landing Page de Vendas', 
+            desc: 'Página otimizada para conversão e captura de leads de alta performance.',
+            git: 'https://wsdesing.github.io/lading-pages-Construtora/',
+            live: 'https://wsdesing.github.io/lading-pages-Construtora/',
+            tags: ['UI Design', 'HTML/CSS']
+        }
+    ];
+
+    const container = document.getElementById('gallery-container');
+    projetos.forEach(p => {
+        container.innerHTML += `
+            <div class="col-md-6" data-aos="fade-up">
+                <div class="card service-card overflow-hidden">
+                    <img src="${p.img}" class="img-fluid project-img" alt="${p.titulo}">
+                    <div class="p-4">
+                        <div class="mb-2">
+                            ${p.tags.map(t => `<span class="badge bg-primary-subtle text-primary border border-primary-subtle badge-tech me-1">${t}</span>`).join('')}
+                        </div>
+                        <h4 class="fw-bold">${p.titulo}</h4>
+                        <p class="text-muted small">${p.desc}</p>
+                        <div class="d-flex gap-2 mt-4">
+                            <a href="${p.live}" target="_blank" class="btn btn-primary btn-sm rounded-pill px-3">
+                                <i class="ri-external-link-line"></i> Site Online
+                            </a>
+                            <a href="${p.git}" target="_blank" class="btn btn-outline-dark btn-sm rounded-pill px-3">
+                                <i class="ri-github-fill"></i> Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+</script>
+</body>
+</html>
